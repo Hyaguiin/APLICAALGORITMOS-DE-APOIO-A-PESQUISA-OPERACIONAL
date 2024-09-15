@@ -1,7 +1,7 @@
 package com.br.Livro.model;
 
 public class Livro {
-    private static int nextId = 1; 
+    private static int nextId = 1;
     private int id;
     private String titulo;
     private String autor;

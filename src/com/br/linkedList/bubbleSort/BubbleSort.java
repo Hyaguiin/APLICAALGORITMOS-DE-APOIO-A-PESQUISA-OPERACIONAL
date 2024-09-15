@@ -8,7 +8,7 @@ public class BubbleSort {
 
     private static void bubbleSort(LinkedList<Livro> list, java.util.function.Function<Livro, String> keyExtractor) {
         if (list.head == null || list.head.getNext() == null) {
-            return; 
+            return;
         }
 
         boolean foiTrocado;

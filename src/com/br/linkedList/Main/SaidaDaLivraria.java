@@ -11,25 +11,39 @@ public class SaidaDaLivraria {
     public static void main(String[] args) {
         while (true) {
             String[] opcao = {
-                "Adicionar Livro", 
-                "Listar Livros", 
-                "Buscar Livro por ID", 
-                "Remover Livro por ID", 
-                "Ordenar por Título", 
-                "Ordenar por Autor", 
-                "Sair"
+                    "Adicionar Livro",
+                    "Listar Livros",
+                    "Buscar Livro por ID",
+                    "Remover Livro por ID",
+                    "Ordenar por Título",
+                    "Ordenar por Autor",
+                    "Sair"
             };
             int escolherOpcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Sistema de Livraria",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcao, opcao[0]);
 
             switch (escolherOpcao) {
-                case 0: adicionarLivro(); break;
-                case 1: listarLivros(); break;
-                case 2: buscarLivroPorId(); break;
-                case 3: removerLivroPorId(); break;
-                case 4: sortTitulo(); break;
-                case 5: sortAutor(); break;
-                case 6: System.exit(0); break;
+                case 0:
+                    adicionarLivro();
+                    break;
+                case 1:
+                    listarLivros();
+                    break;
+                case 2:
+                    buscarLivroPorId();
+                    break;
+                case 3:
+                    removerLivroPorId();
+                    break;
+                case 4:
+                    sortTitulo();
+                    break;
+                case 5:
+                    sortAutor();
+                    break;
+                case 6:
+                    System.exit(0);
+                    break;
             }
         }
     }
@@ -39,7 +53,7 @@ public class SaidaDaLivraria {
             String titulo = JOptionPane.showInputDialog("Digite o título do livro:");
             String autor = JOptionPane.showInputDialog("Digite o autor do livro:");
             int anoPublicacao = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano de publicação do livro:"));
-            
+
             Livro livro = new Livro(titulo, autor, anoPublicacao);
             livroService.adicionarLivro(livro);
             JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
@@ -66,8 +80,11 @@ public class SaidaDaLivraria {
     private static void removerLivroPorId() {
         try {
             int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do livro para remover:"));
-            livroService.removerLivroPorId(id);
-            JOptionPane.showMessageDialog(null, "Livro removido (se existia)!");
+            if (livroService.removerLivroPorId(id)) {
+                JOptionPane.showMessageDialog(null, "Livro removido com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "O livro não foi removido.");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "ID deve ser um número.");
         }
