@@ -1,0 +1,43 @@
+# Diretório de saída padrão da compilação
+/bin/
+/build/
+
+# Logs
+*.log
+
+# Arquivos compilados
+*.class
+
+# Configurações da IDE
+/.classpath
+/.project
+/.settings/
+/.idea/
+/*.iml
+/.vscode/
+
+# Diretórios de compilação do Maven
+/target/
+
+# Diretórios de compilação do Gradle
+/build/
+.gradle/
+/out/
+
+# Arquivos de pacotes
+*.jar
+*.war
+*.ear
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.swo
+*~
+
+# Outros
+*.env
