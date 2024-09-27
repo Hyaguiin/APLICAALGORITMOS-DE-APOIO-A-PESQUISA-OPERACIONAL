@@ -6,19 +6,35 @@ import com.br.linkedList.Exception.FailedToCreate;
 import com.br.linkedList.Exception.FailedToDelete;
 import com.br.linkedList.Exception.NotFound;
 import com.br.linkedList.Providers.LivroIdProvider;
+import com.br.linkedList.TreeNode.BinaryTree;
 import com.br.linkedList.bubbleSort.BubbleSort;
 
 public class LivroService {
 	private LinkedList<Livro> livros;
 	private LivroIdProvider idProvider;
+	private BinaryTree recomendacao;
 
 	public LivroService() {
 		this.livros = new LinkedList<>();
 		this.idProvider = new LivroIdProvider();
+		this.recomendacao = new BinaryTree();
 	}
+	
+	
 
-	public void adicionarLivro(Livro livro) {
+    public String recomendarLivrosPorAutor(String autor) {
+        String recomendacoes = recomendacao.searchByAuthor(autor);
+        if (recomendacoes.isEmpty()) {
+            return "Nenhum livro encontrado para o autor: " + autor;
+        }
+        return recomendacoes;
+    }
+	
+	
+
+	public void adicionarLivro(Livro livro) {  //Aqui vai tnt adicioanr a lista quanto a arvore
 		try {
+			recomendacao.insert(livro);
 			livros.append(livro);
 		} catch (FailedToCreate err) {
 			throw new FailedToCreate("Não foi possível criar o Objeto livro", err);

@@ -17,6 +17,7 @@ public class SaidaDaLivraria {
                 "Remover Livro por ID", 
                 "Ordenar por Título", 
                 "Ordenar por Autor", 
+                "Recomendar Livro por Autor",  
                 "Sair"
             };
             int escolherOpcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Sistema de Livraria",
@@ -29,7 +30,8 @@ public class SaidaDaLivraria {
                 case 3: removerLivroPorId(); break;
                 case 4: sortTitulo(); break;
                 case 5: sortAutor(); break;
-                case 6: System.exit(0); break;
+                case 6: recomendarLivroPorAutor(); break; // Chama o novo método
+                case 7: System.exit(0); break;
             }
         }
     }
@@ -81,5 +83,11 @@ public class SaidaDaLivraria {
     private static void sortAutor() {
         livroService.SortAutor();
         JOptionPane.showMessageDialog(null, "Livros ordenados por autor:\n" + livroService.listarLivros());
+    }
+
+    private static void recomendarLivroPorAutor() {
+        String autor = JOptionPane.showInputDialog("Digite o nome do autor para recomendações:");
+        String recomendacoes = livroService.recomendarLivrosPorAutor(autor);
+        JOptionPane.showMessageDialog(null, recomendacoes);
     }
 }
