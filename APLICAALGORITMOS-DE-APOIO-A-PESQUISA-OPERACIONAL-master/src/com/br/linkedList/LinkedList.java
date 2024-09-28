@@ -81,5 +81,19 @@ public class LinkedList<T> {
         return "Nó removido com sucesso";
 
     }
+    
+    public int getSize() {    //P os livros recomendados p autor 
+        Node<T> current = head;
+        int size = 0;
+
+        while (current != null) {
+            size++;
+            current = current.getNext();
+        }
+
+        return size;
+    }
+
+    
 
 }

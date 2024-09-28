@@ -1,7 +1,10 @@
 package com.br.Livro.metodos;
 
+import java.util.Random;
+
 import com.br.Livro.model.Livro;
 import com.br.linkedList.LinkedList;
+import com.br.linkedList.Node;
 import com.br.linkedList.Exception.FailedToCreate;
 import com.br.linkedList.Exception.FailedToDelete;
 import com.br.linkedList.Exception.NotFound;
@@ -21,15 +24,33 @@ public class LivroService {
 	}
 	
 	
+	 public String recomendarLivroAleatorioPorAutor(String autor) { //EEsse aqui foi pancada, plmds se for alterar, mandar em outra branch
+	        Node<Livro> current = livros.head; 
+	        LinkedList<Livro> livrosDoAutor = new LinkedList<>(); 
 
-    public String recomendarLivrosPorAutor(String autor) {
-        String recomendacoes = recomendacao.searchByAuthor(autor);
-        if (recomendacoes.isEmpty()) {
-            return "Nenhum livro encontrado para o autor: " + autor;
-        }
-        return recomendacoes;
-    }
-	
+	        while (current != null) {
+	            Livro livro = current.getValue();
+	            if (livro.getAutor().equalsIgnoreCase(autor)) {
+	                livrosDoAutor.append(livro);
+	            }
+	            current = current.getNext();
+	        }
+
+	        if (livrosDoAutor.head == null) {
+	            return "Nenhum livro encontrado para o autor: " + autor;
+	        }
+
+	        Random rand = new Random();
+	        int randomIndex = rand.nextInt(livrosDoAutor.getSize()); 
+	        Node<Livro> randomNode = livrosDoAutor.head;
+
+	       
+	        for (int i = 0; i < randomIndex; i++) {
+	            randomNode = randomNode.getNext();
+	        }
+
+	        return randomNode.getValue().toString();
+	    }
 	
 
 	public void adicionarLivro(Livro livro) {  //Aqui vai tnt adicioanr a lista quanto a arvore

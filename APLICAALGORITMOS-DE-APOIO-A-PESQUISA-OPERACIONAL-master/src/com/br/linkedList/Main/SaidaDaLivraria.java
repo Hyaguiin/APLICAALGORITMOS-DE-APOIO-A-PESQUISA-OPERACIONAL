@@ -17,7 +17,7 @@ public class SaidaDaLivraria {
                 "Remover Livro por ID", 
                 "Ordenar por Título", 
                 "Ordenar por Autor", 
-                "Recomendar Livro por Autor",  
+                "Recomendar um Livro por Autor",  
                 "Sair"
             };
             int escolherOpcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Sistema de Livraria",
@@ -87,7 +87,7 @@ public class SaidaDaLivraria {
 
     private static void recomendarLivroPorAutor() {
         String autor = JOptionPane.showInputDialog("Digite o nome do autor para recomendações:");
-        String recomendacoes = livroService.recomendarLivrosPorAutor(autor);
-        JOptionPane.showMessageDialog(null, recomendacoes);
+        String recomendacao = livroService.recomendarLivroAleatorioPorAutor(autor);
+        JOptionPane.showMessageDialog(null, recomendacao);
     }
 }
